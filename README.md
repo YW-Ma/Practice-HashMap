@@ -12,8 +12,3 @@
 - [4-delete](https://github.com/YW-Ma/Practice-HashMap/tree/4-delete) Building a delete function to delete a <key, value> pair from the bucket.
 
 The test cases and several notes come from Udacity-Data Structures and Algorithms
-
-Explanations：
-
-1. 
-2.
