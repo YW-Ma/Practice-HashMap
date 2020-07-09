@@ -50,7 +50,7 @@ class HashMap:
         self.bucket_array[index] = new_node
         self.num_entries += 1
         
-        # check for load factor 看看是不是n/b > 0.7 该扩容了
+        # 4. check for load factor 看看是不是n/b > 0.7 该扩容了
         current_load_factor = self.num_entries / len(self.bucket_array)
         if current_load_factor > self.load_factor:
             self.num_entries = 0
