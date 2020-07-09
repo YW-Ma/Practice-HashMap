@@ -89,6 +89,22 @@ class HashMap:
     def size(self):
         return self.num_entries
     
+    def _rehash(self):
+        '''
+        扩容 + 转移
+        '''
+        old_capacity = len(self.bucket_array)
+        new_capacity = 2 * old_capacity
+        
+        old_buckets = self.bucket_array
+        self.bucket_array = [None for _ in range(new_capacity)]
+        for head in old_buckets:
+            while head is not None:
+                key = head.key
+                value = head.value
+                self.put(key, value)  # 直接调用put就好了。不用重新写。
+                head = head.next
+
     # Helper function to see the hashmap
     def __repr__(self):
         output = "\nLet's view the hash map:"
