@@ -128,18 +128,23 @@ class HashMap:
                     
         return output
 
-# Test the collision resolution technique
-hash_map = HashMap()
+# Test Rehashing
+
+# We have reduced the size of the hashmap array to increase the load factor (> 0.7) 
+# and hence trigger the rehash() function
+hash_map = HashMap(3)                        
 
 hash_map.put("one", 1)
 hash_map.put("two", 2)
-hash_map.put("three", 3)          # Collision: The key "three" will generate the same bucket_index as that of the key "two"
-hash_map.put("neo", 11)           # Collision: The key "neo" will generate the same bucket_index as that of the key "one"
+hash_map.put("three", 3)
+hash_map.put("neo", 11)
 
 print("size: {}".format(hash_map.size()))
+
 
 print("one: {}".format(hash_map.get("one")))
 print("neo: {}".format(hash_map.get("neo")))
 print("three: {}".format(hash_map.get("three")))
+print("size: {}".format(hash_map.size()))
 
-print(hash_map)                          # call to the helper function to see the hashmap
+hash_map                          # call to the helper function to see the hashmap
