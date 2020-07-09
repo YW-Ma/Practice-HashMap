@@ -98,26 +98,12 @@ class HashMap:
                     
         return output
 
-# Test delete operation
-hash_map = HashMap(3)
+# Check the bucket_index for two different strings made with same set of characters
+hash_map = HashMap()
+print(ord("a"))
 
-hash_map.put("one", 1)
-hash_map.put("two", 2)
-hash_map.put("three", 3)
-hash_map.put("neo", 11)
+bucket_index = hash_map.get_bucket_index("one")
+print(bucket_index)
 
-print("size: {}".format(hash_map.size()))
-
-
-print("one: {}".format(hash_map.get("one")))
-print("neo: {}".format(hash_map.get("neo")))
-print("three: {}".format(hash_map.get("three")))
-print("size: {}".format(hash_map.size()))
-print(f'\n此时的hash_map{hash_map}')                          # call to the helper function to see the hashmap
-
-
-hash_map.delete("one")
-print(f'\n此时的hash_map{hash_map}')                           # call to the helper function to see the hashmap
-
-print(hash_map.get("one"))
-print(hash_map.size())
+bucket_index = hash_map.get_bucket_index("neo")
+print(bucket_index) 
