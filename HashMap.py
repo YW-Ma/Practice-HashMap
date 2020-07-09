@@ -149,7 +149,7 @@ class HashMap:
         return output
 
 # Test delete operation
-hash_map = HashMap(3)
+hash_map = HashMap(2)
 
 hash_map.put("one", 1)
 hash_map.put("two", 2)
