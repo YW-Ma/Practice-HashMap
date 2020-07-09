@@ -52,7 +52,16 @@ class HashMap:
         
     
     def get(self, key):
-        pass
+        # 查找的时候要遍历bucket中的链表。如果找到key一样的就返回。
+        # 1. 计算bucket_index
+        index = self.get_bucket_index(key)
+        # 2. 在bucket里面找有没有对应的key
+        head = self.bucket_array[index]
+        while head is not None:    
+            #    如果有对应的，就返回value
+            if head.key == key:
+                return head.value
+            head = head.next
             
     
     def get_bucket_index(self, key):
@@ -98,26 +107,18 @@ class HashMap:
                     
         return output
 
-# Test delete operation
-hash_map = HashMap(3)
+# Test the collision resolution technique
+hash_map = HashMap()
 
 hash_map.put("one", 1)
 hash_map.put("two", 2)
-hash_map.put("three", 3)
-hash_map.put("neo", 11)
+hash_map.put("three", 3)          # Collision: The key "three" will generate the same bucket_index as that of the key "two"
+hash_map.put("neo", 11)           # Collision: The key "neo" will generate the same bucket_index as that of the key "one"
 
 print("size: {}".format(hash_map.size()))
-
 
 print("one: {}".format(hash_map.get("one")))
 print("neo: {}".format(hash_map.get("neo")))
 print("three: {}".format(hash_map.get("three")))
-print("size: {}".format(hash_map.size()))
-print(f'\n此时的hash_map{hash_map}')                          # call to the helper function to see the hashmap
 
-
-hash_map.delete("one")
-print(f'\n此时的hash_map{hash_map}')                           # call to the helper function to see the hashmap
-
-print(hash_map.get("one"))
-print(hash_map.size())
+print(hash_map)                          # call to the helper function to see the hashmap
