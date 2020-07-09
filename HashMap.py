@@ -50,24 +50,9 @@ class HashMap:
         self.bucket_array[index] = new_node
         self.num_entries += 1
         
-        # check for load factor 看看是不是n/b > 0.7 该扩容了
-        current_load_factor = self.num_entries / len(self.bucket_array)
-        if current_load_factor > self.load_factor:
-            self.num_entries = 0
-            self._rehash()
-        
     
     def get(self, key):
-        # 查找的时候要遍历bucket中的链表。如果找到key一样的就返回。
-        # 1. 计算bucket_index
-        index = self.get_bucket_index(key)
-        # 2. 在bucket里面找有没有对应的key
-        head = self.bucket_array[index]
-        while head is not None:    
-            #    如果有对应的，就返回value
-            if head.key == key:
-                return head.value
-            head = head.next
+        pass
             
     
     def get_bucket_index(self, key):
@@ -94,41 +79,6 @@ class HashMap:
     
     def size(self):
         return self.num_entries
-    
-    def _rehash(self):
-        '''
-        扩容 + 转移
-        '''
-        old_capacity = len(self.bucket_array)
-        new_capacity = 2 * old_capacity
-        
-        old_buckets = self.bucket_array
-        self.bucket_array = [None for _ in range(new_capacity)]
-        for head in old_buckets:
-            while head is not None:
-                key = head.key
-                value = head.value
-                self.put(key, value)  # 直接调用put就好了。不用重新写。
-                head = head.next
-        
-    def delete(self, key):
-        '''
-        给定key，将对应的节点从bucket移除
-        '''
-        # 1. 计算key对应的bucket index
-        index = self.get_bucket_index(key)
-        # 2. 删除链表中的结点（首节点？后继节点？）
-        prev = None
-        current = self.bucket_array[index]
-        while current is not None:
-            if current.key == key:
-                if prev == None: # 首节点情况
-                    self.bucket_array[index] = current.next
-                else:            # 后继节点情况
-                    prev.next = current.next
-            prev = current
-            current = current.next
-        
     
     # Helper function to see the hashmap
     def __repr__(self):
